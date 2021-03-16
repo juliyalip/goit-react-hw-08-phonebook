@@ -1,0 +1,28 @@
+.contactItem {
+  display: flex;
+  border: 1px solid black;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.contactItem-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+.contactItem-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 250ms;
+}
+
+.contactItem-exit {
+  opacity: 1;
+  transform: translate(0);
+}
+.contactItem-exit-active {
+  opacity: 0;
+  transform: translate(100%);
+
+  transition: all 250ms;
+}
