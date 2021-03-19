@@ -2,11 +2,20 @@ import { Component } from "react";
 import "./index.css";
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+import { Route, Switch } from 'react-router-dom';
 import {fetchContact} from './redux/contact/contact-operations'
 
+import HomeView from './component/HomeView';
+import RegisterView from './component/header/RegisterView';
+import LoginView from './component/header/LoginView';
 import Contacts from "./component/contactBook/Contacts";
 import Filter from "./component/contactBook/Filter";
 import Form from "./component/contactBook/Form";
+
+
+
+import AppBar from './component/header/AppBar'
+
 
 import selectors from './redux/contact/contacts-selectors'
 
@@ -26,11 +35,21 @@ class App extends Component {
    const { contacts } = this.props
    
   return (
-       <>
-        <div className="container">
-
+    <>
+        <AppBar />
+       
+       
+        <Switch>
+          <Route exact path="/" component={HomeView} />
+          <Route path="/registr" component={RegisterView} />
+          <Route path="/login" component={ LoginView}/>
+          
+       
+          
+         
+        </Switch>
         
-        <CSSTransition
+  { /*     <CSSTransition
           in={true}
           appear={true}
           timeout={500}
@@ -57,11 +76,10 @@ class App extends Component {
           >
          <Contacts />  
                     
-            </CSSTransition>
+  </CSSTransition> */}
    
+                    
      
-                   
-        </div>
       </>
     )
   }

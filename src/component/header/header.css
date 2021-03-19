@@ -1,0 +1,20 @@
+.menuContainer{
+    margin-left: 7%;
+    margin-right: 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.registerContainer{
+    width: 300px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+  border: 1px solid black;
+}
+
+.registrLabel{
+    margin: 12px;
+    font-weight: 500;
+}
