@@ -26,10 +26,10 @@ this.setState({[name]: value})
         const { name, password, email } = this.state;
 
         return (<>
-            <form className="registerContainer"
+            <form className="loginContainer"
                 onSubmit={this.handleSubmit}
             >
-                <label className="registrLabel">Имя
+                <label className="registrLabel">Имя 
                     <input name="name"
                         value={name}
                         type="text" onChange={ this.handleChange}/>

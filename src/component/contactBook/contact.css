@@ -26,3 +26,10 @@
 
   transition: all 250ms;
 }
+
+.containerBook{
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+
+}

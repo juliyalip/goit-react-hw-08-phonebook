@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import * as operation from '../../redux/contact/contact-operations'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import selectors from '../../redux/contact/contacts-selectors';
-import  "./contact.css";
+import "./contact.css";
+
 
 
 

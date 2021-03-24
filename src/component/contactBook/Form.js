@@ -6,7 +6,10 @@ import * as contactOperetions from '../../redux/contact/contact-operations'
 import selectors from '../../redux/contact/contacts-selectors'
 import s from "./form.module.css";
 
-import Duplicate from './Duplicate'
+import Duplicate from './Duplicate';
+
+
+
 
 
 
@@ -101,6 +104,8 @@ import Duplicate from './Duplicate'
         </label>
         <button type="submit">Add contact</button>
         </form>
+
+      
         </>
     );
   }

@@ -15,7 +15,9 @@ const AppBar = ({isAuthenticated}) => (
         <div className="menuContainer">
         <Navigation />
             {isAuthenticated ? <UserMenu /> : <AuthNav />}
-            </div>
+           
+        </div>
+        <hr></hr>
     </header>);
 
 const mapStateToProps =state => ({

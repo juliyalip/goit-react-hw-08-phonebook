@@ -25,7 +25,7 @@ const register = credentails => async dispatch => {
     try {
     const response = await  axios.post('/users/signup', credentails )
 
-        token.set(response.data.token);
+        token.set(response.data.token);// добавляем, что б все послед. запросы шли с этим заголовком
         dispatch(authActions.registerSuccess(response.data))
         
     } catch (error) {
@@ -49,6 +49,7 @@ const logIn = credentails => async dispatch => {
 };
 
 const logOut = () => async dispatch => {
+
     // явно заголовок можно не прописывать, его уже засетили
     dispatch(authActions.logoutReguest());
 
@@ -56,14 +57,35 @@ const logOut = () => async dispatch => {
        await axios.post('/users/logout');
 
         // если все ок, мы разлогинились, то заголовок снимаем
-        token.unset()
+        token.unset();
         dispatch(authActions.logoutSuccess())
     }
     catch (error) {
         dispatch(authActions.logoutError(error.message))
     }
- }
+}
+ 
+const getCurrentUser = () => async (dispatch, getState) => {
+    const {
+        auth: { token: persistedToken },
+        
+    } = getState();
+    if (!persistedToken) {
+        return; //если токена нет - выходим
+    }
 
-const operations = { register, logIn, logOut};
+    token.set(persistedToken);
+    dispatch(authActions.getCurrentUserReguest());
+    try {
+        const response = await axios.get('/users/current');
+
+        dispatch(authActions.getCurrentUserSuccess(response.data));//приходит объект пользователя
+    } catch (error) {
+        dispatch(authActions.getCurrentUserError(error.message))
+        
+    }
+}
+
+const operations = { register, logIn, logOut, getCurrentUser};
 
 export default operations;

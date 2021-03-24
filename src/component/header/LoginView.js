@@ -39,7 +39,7 @@ class LoginView extends Component {
     render() {
         return (
             <>
-                <form className="registerContainer" onSubmit={this.handleSubmit}>
+                <form className="loginContainer" onSubmit={this.handleSubmit}>
                     <label className="registrLabel">
                         Почта
                         <input name="email"

@@ -31,11 +31,8 @@ const AythNav = () => (
         activeStyle={styles.activeLink}>
             Логин 
         </NavLink>
-
-        <hr></hr>
-        
+  
       
-
     </div>
     
  );

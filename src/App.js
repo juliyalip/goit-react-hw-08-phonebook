@@ -3,14 +3,15 @@ import "./index.css";
 import { connect } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
 import { Route, Switch } from 'react-router-dom';
-import {fetchContact} from './redux/contact/contact-operations'
+import authOps from './redux/auth/auth-operations'
 
 import HomeView from './component/HomeView';
 import RegisterView from './component/header/RegisterView';
 import LoginView from './component/header/LoginView';
-import Contacts from "./component/contactBook/Contacts";
-import Filter from "./component/contactBook/Filter";
-import Form from "./component/contactBook/Form";
+import BooksView from './component/contactBook/BooksView';
+//import Contacts from "./component/contactBook/Contacts";
+//import Filter from "./component/contactBook/Filter";
+//import Form from "./component/contactBook/Form";
 
 
 
@@ -27,12 +28,13 @@ import './component/contactBook/contact.css'
 
 class App extends Component {
 
-  componentDidMount(){
-    this.props.contactView()
-  }
+
+  componentDidMount() {
+  this.props.onGetCurrentUser()
+}
     
  render() {
-   const { contacts } = this.props
+
    
   return (
     <>
@@ -42,7 +44,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={HomeView} />
           <Route path="/registr" component={RegisterView} />
-          <Route path="/login" component={ LoginView}/>
+        <Route path="/login" component={LoginView} />
+        <Route path="/contacts" component={BooksView} />
           
        
           
@@ -95,10 +98,9 @@ const mapStateToProps = state => ({
 );
 
 
-const mapDispatchToProps = dispatch => ({
-  contactView: ()=> dispatch(fetchContact()) 
-})
-  
+const mapDispatchToProps = {
+   onGetCurrentUser: authOps.getCurrentUser
+ } 
   
   
 export default connect(mapStateToProps, mapDispatchToProps)(App);
