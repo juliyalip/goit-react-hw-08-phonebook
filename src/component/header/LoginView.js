@@ -2,6 +2,9 @@ import { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from "prop-types";
 
+
+import { Button, Form } from 'react-bootstrap';
+
 import operations from '../../redux/auth/auth-operations';
 import './header.css'
 
@@ -39,25 +42,32 @@ class LoginView extends Component {
     render() {
         return (
             <>
-                <form className="loginContainer" onSubmit={this.handleSubmit}>
-                    <label className="registrLabel">
+                <Form onSubmit={this.handleSubmit} className="loginContainer">
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>
                         Почта
-                        <input name="email"
+                        <Form.Control  placeholder="Enter e-mail" name="email"
                             type="text"
                             value={this.state.parol}
                             onChange={this.handleChange} autoComplete="off"/>
-                    </label>
-                    <label className="registrLabel">
+                        </Form.Label>
+                    </Form.Group>
+                    
+                     <Form.Group controlId="formBasicEmail">
+                    <Form.Label>
                         Пароль
-                        <input type="text"
+                        <Form.Control type="text" placeholder="password"
                             name="password"
                             value={this.state.password}
                             onChange={this.handleChange} />
-                    </label>
-                    <button type="submit" onSubmit={this.handleSubmit}>
+                        </Form.Label>
+                        </Form.Group>
+                    <Button variant="primary" type="submit" onSubmit={this.handleSubmit}>
                         Войти
-                    </button>
-                </form>
+                    </Button>
+                 
+               
+             </Form>
             </>)
     }
 }

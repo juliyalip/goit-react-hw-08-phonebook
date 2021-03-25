@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from 'react-redux';
-
+import { Button, Form} from 'react-bootstrap';
 import PropTypes from "prop-types";
 import * as contactOperetions from '../../redux/contact/contact-operations'
 import selectors from '../../redux/contact/contacts-selectors'
@@ -10,10 +10,7 @@ import Duplicate from './Duplicate';
 
 
 
-
-
-
- class Form extends Component {
+ class FormBook extends Component {
   state = {
     name: "",
     number: "",
@@ -79,30 +76,39 @@ import Duplicate from './Duplicate';
 
     return (
       <>
+       
+
         {this.state.error && <Duplicate />}
 
-      <form onSubmit={this.handleFormSubmit} className={s.form}>
-        <label className={s.input}>
+        <form onSubmit={this.handleFormSubmit} className={s.form}>
+
+  
+        <Form.Group controlId="formBasicEmail">
+        <Form.Label className="registrLabel">
           Name
-          <input
+          <Form.Control 
             type="text"
             name="name"
             value={name}
             placeholder="enter name"
             onChange={this.handleChange}
           />
-        </label>
-        <label className={s.input}>
+            </Form.Label>
+            </Form.Group>
+
+        <Form.Group controlId="formBasicEmail">  
+        <Form.Label className="registrLabel">
           Number
-          <input
+          <Form.Control
             type="text"
             name="number"
             value={number}
             placeholder="enter number"
             onChange={this.handleChange}
           />
-        </label>
-        <button type="submit">Add contact</button>
+            </Form.Label>
+            </Form.Group>
+        <Button variant="primary" type="submit">Add contact</Button>
         </form>
 
       
@@ -121,4 +127,4 @@ const mapDispatchToProps = dispatch => ({
 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(FormBook)

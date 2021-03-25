@@ -1,18 +1,17 @@
 import { Component, Suspense, lazy } from "react";
 import "./index.css";
 import { connect } from 'react-redux';
-import {  Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import authOps from './redux/auth/auth-operations';
 
 import PrivateRoute from './component/PrivatRoute';
 import PublicRoute from './component/PublicRoute'
 
-//import HomeView from './component/HomeView';
-//import RegisterView from './component/header/RegisterView';
-//import LoginView from './component/header/LoginView';
-//import BooksView from './component/contactBook/BooksView';
+import AppBar from './component/header/AppBar';
+import Container from './component/container/Container'
 
-import AppBar from './component/header/AppBar'
 
 import selectors from './redux/contact/contacts-selectors'
 
@@ -36,6 +35,7 @@ class App extends Component {
    // если проп restricted передали он по умолчанию true
   return (
     <>
+      <Container >
         <AppBar />
 
       
@@ -55,9 +55,9 @@ class App extends Component {
 
         </Switch>
      </Suspense>
-        
   
-                    
+  
+      </Container>              
      
       </>
     )

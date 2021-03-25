@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 import { connect } from 'react-redux';
 import * as actions from '../../redux/contact/contact-action';
 import selectors from '../../redux/contact/contacts-selectors'
-
+import { Form} from 'react-bootstrap'
 
 
 const Filter = ({ value, onChange }) => (
-  <label>
+  <Form.Label className="registrLabel">
     Find contacts by name
-    <input
+    <Form.Control
       type="text"
       name="filter"
       value={value}
       onChange={onChange}
       placeholder="find name"
     />
-  </label>
+  </Form.Label>
 );
 
 Filter.propTypes = {

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Button} from 'react-bootstrap';
 import * as operation from '../../redux/contact/contact-operations'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import selectors from '../../redux/contact/contacts-selectors';
@@ -18,14 +19,14 @@ const Contacts = ({ persons, onDelete }) => (
         <p>
           {name} {number}
         </p>
-        <button
+        <Button variant="primary"
           type="button"
           onClick={() => {
             onDelete(id);
           }}
         >
           Delete
-        </button>
+        </Button>
         </li>
         </CSSTransition>
    

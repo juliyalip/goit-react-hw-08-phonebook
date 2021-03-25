@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import {Navbar} from 'react-bootstrap'
 
 
 const styles = {
@@ -15,7 +16,7 @@ const styles = {
 
 const AythNav = () => (
     <div>
-        <NavLink to={{
+          <NavLink to={{
             pathname: '/registr',
                   }}
             
