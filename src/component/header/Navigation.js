@@ -1,4 +1,7 @@
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import authSelectors from '../../redux/auth/auth-selectors';
 
 const styles = {
     link: {
@@ -11,17 +14,22 @@ const styles = {
     }
 }
 
-const Navigation = () => (
+// в зависимости от авторизации показываем или нет тел. контакты
+const Navigation = ({isAuthenticated}) => (
     <div>
         <NavLink to="/"
             exact style={styles.link}
             activeStyle={styles.activeLink}>
             Главная</NavLink>
-        <NavLink to="/contacts"
+      {isAuthenticated &&  ( <NavLink to="/contacts"
             exact style={styles.link}
             activeStyle={styles.activeLink}>
-            Kоллекция контактов</NavLink>
+            Kоллекция контактов</NavLink>)}
     </div>
 );
 
-export default Navigation;
+const mapStateToProps = state => ({
+    isAuthenticated: authSelectors.getAuthenticated(state)
+})
+
+export default connect(mapStateToProps)(Navigation);

@@ -30,9 +30,19 @@ const error = createReducer(null, {
     [authActions.getCurrentUserError]: setError
 });
 
+const isAuthenticated = createReducer(false, {
+    [authActions.registerSuccess]: () => true,
+    [authActions.loginSuccess]: () => true,
+    [authActions.getCurrentUserSuccess]: () => true,
+    [authActions.registerError]: () => false,
+    [authActions.logoutSuccess]: () => false,
+    [authActions.getCurrentUserError]: () => false
+})
+
 
 export default combineReducers({
     user,
+    isAuthenticated,
     token,
     error
 })

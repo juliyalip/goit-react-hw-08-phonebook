@@ -22,12 +22,30 @@ class BooksView extends Component  {
 
     render() {
         return (
-            <div className="containerBook">
+          <div className="containerBook">
+            <CSSTransition
+          in={true}
+          appear={true}
+          timeout={500}
+          classNames="title"
+          unmountOnExit
+        >
+          <h1 className="title">Phonebook</h1>
+        </CSSTransition>
                 
-        <Form />
-        <Filter />
-        <h2>Contacts</h2>
-          <Contacts />  
+            <Form />
+             <CSSTransition in={this.props.contacts.length > 1}
+              timeout={250} unmountOnExit>
+               <Filter />
+      </CSSTransition>
+       
+            <h2>Contacts</h2>
+             <CSSTransition in={this.props.contacts.length > 0}
+          appear={true} timeout={250} unmountOnExit
+            >
+              <Contacts />  
+          </CSSTransition>
+          
     </div>
         )
     }
