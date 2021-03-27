@@ -1,4 +1,5 @@
 import { Component, Suspense, lazy } from "react";
+import PropTypes from 'prop-types';
 import "./index.css";
 import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
@@ -21,6 +22,10 @@ const BooksView = lazy(() => import('./views/BooksView'))
 
 
 class App extends Component {
+
+  static propTypes = {
+   onGetCurrentUser: PropTypes.func 
+  }
   
   componentDidMount() {
   this.props.onGetCurrentUser()

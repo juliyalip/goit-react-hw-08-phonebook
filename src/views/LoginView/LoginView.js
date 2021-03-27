@@ -8,6 +8,11 @@ import s from './LoginView.module.css'
 
 
 class LoginView extends Component {
+
+    static propTypes = {
+        handleChange: PropTypes.func,
+        handleSubmit: PropTypes.func
+    }
     
     state = {
           email: '',
@@ -54,7 +59,7 @@ class LoginView extends Component {
                     <Form.Label>
                             Пароль
                         <Form.Control
-                                type="text"
+                                type="password"
                                 placeholder="password"
                             name="password"
                             value={this.state.password}

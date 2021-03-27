@@ -48,7 +48,7 @@ this.setState({[name]: value})
                 <Form.Label>
                    Пароль
                     <Form.Control placeholder="password" name="password"
-                        type="text"
+                        type="password"
                         value={password} onChange={this.handleChange} />
                     </Form.Label>
                     </Form.Group>
