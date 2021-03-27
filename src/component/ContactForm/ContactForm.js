@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Button, Form} from 'react-bootstrap';
 import PropTypes from "prop-types";
 import * as contactOperetions from '../../redux/contact/contact-operations'
-import selectors from '../../redux/contact/contacts-selectors'
-import s from "./form.module.css";
+import selectors from '../../redux/contact/contacts-selectors';
+import s from './contactForm.module.css'
 
-import Duplicate from './Duplicate';
+import Duplicate from '../Duplicate'
 
 
 
- class FormBook extends Component {
+ class ContactForm extends Component {
   state = {
     name: "",
     number: "",
@@ -80,7 +80,7 @@ import Duplicate from './Duplicate';
 
         {this.state.error && <Duplicate />}
 
-        <form onSubmit={this.handleFormSubmit} className={s.form}>
+        <form onSubmit={this.handleFormSubmit} className={s.container}>
 
   
         <Form.Group controlId="formBasicEmail">
@@ -127,4 +127,4 @@ const mapDispatchToProps = dispatch => ({
 
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(FormBook)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)

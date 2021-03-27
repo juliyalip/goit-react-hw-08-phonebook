@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import {
-    addContatcReguest, addContactSuccess, addContactError,
-    deleteContactReguest, deleteContactSuccess,  deleteContactError,
-    changleFilter, fetchContatcReguest, fetchContactSuccess, fetchContactError
+     addContactSuccess, 
+     deleteContactSuccess, 
+    changleFilter,
+    fetchContactSuccess,
 } from './contact-action';
 
 
@@ -20,19 +21,6 @@ const contactsReduser = createReducer([], {
 )
 
 
-const loadingReduser = createReducer(false, {
-    [fetchContatcReguest]: () => false,
-    [fetchContactSuccess]: () => false,
-    [fetchContactError]: () => false,
-   
-    [addContatcReguest]: () => true,
-    [addContactSuccess]: () => false,
-    [addContactError]: () => false,
-
-    [deleteContactReguest]: () => true,
-    [deleteContactSuccess]: () => false,
-    [deleteContactError]: () => false
-})
 
  
 const filterReduser = createReducer('', {
@@ -44,5 +32,5 @@ const filterReduser = createReducer('', {
 export default combineReducers({
     contacts: contactsReduser, 
     filter: filterReduser,
-    loading: loadingReduser
+   
 })

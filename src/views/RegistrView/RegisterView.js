@@ -1,9 +1,8 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import {Button, Form} from 'react-bootstrap'
-
-import './header.css';
 import operations from '../../redux/auth/auth-operations';
+import s from './registrView..module.css'
 
 class RegisterView extends Component{
     state = {
@@ -27,18 +26,18 @@ this.setState({[name]: value})
         const { name, password, email } = this.state;
 
         return (<>
-            <form className="loginContainer"
+            <form className={s.container}
                 onSubmit={this.handleSubmit}
             >
                <Form.Group controlId="formBasicEmail">
-                <Form.Label className="registrLabel">Имя 
+                <Form.Label>Имя 
                     <Form.Control  placeholder="Enter name" name="name"
                         value={name}
                         type="text" onChange={ this.handleChange}/>
                     </Form.Label>
                     </Form.Group>
  <Form.Group controlId="formBasicEmail">
-                <Form.Label className="registrLabel">Почта
+                <Form.Label>Почта
                     <Form.Control placeholder="enter e-mail" name="email"
                         value={email}
                         type="text" onChange={ this.handleChange}/>
@@ -46,7 +45,7 @@ this.setState({[name]: value})
                     </Form.Group>
 
 <Form.Group controlId="formBasicEmail">
-                <Form.Label className="registrLabel">
+                <Form.Label>
                    Пароль
                     <Form.Control placeholder="password" name="password"
                         type="text"

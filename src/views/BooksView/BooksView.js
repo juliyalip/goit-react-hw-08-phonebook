@@ -3,13 +3,15 @@ import { connect } from 'react-redux';
 import React, {Component} from 'react';
 
 import selectors from '../../redux/contact/contacts-selectors';
-import {fetchContact} from '../../redux/contact/contact-operations'
+import { fetchContact } from '../../redux/contact/contact-operations'
 
-import Form from './Form';
-import Contacts from './Contacts';
-import Filter from './Filter';
+import s from './bookView.module.css';
 
-import './contact.css'
+import ContactForm from '../../component/ContactForm';
+import ContactList from '../../component/ContactList';
+import Filter from '../../component/Filter';
+
+
 
 
 
@@ -22,7 +24,7 @@ class BooksView extends Component  {
 
     render() {
         return (
-          <div className="containerBook">
+          <div className={s.container}>
             <CSSTransition
           in={true}
           appear={true}
@@ -33,7 +35,7 @@ class BooksView extends Component  {
           <h1 className="title">Phonebook</h1>
         </CSSTransition>
                 
-            <Form />
+            <ContactForm />
              <CSSTransition in={this.props.contacts.length > 1}
               timeout={250} unmountOnExit>
                <Filter />
@@ -43,7 +45,7 @@ class BooksView extends Component  {
              <CSSTransition in={this.props.contacts.length > 0}
           appear={true} timeout={250} unmountOnExit
             >
-              <Contacts />  
+              <ContactList />  
           </CSSTransition>
           
     </div>

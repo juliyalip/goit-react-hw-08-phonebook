@@ -4,18 +4,18 @@ import { Button} from 'react-bootstrap';
 import * as operation from '../../redux/contact/contact-operations'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import selectors from '../../redux/contact/contacts-selectors';
-import "./contact.css";
+import s from './ContactList.module.css'
 
 
 
 
-const Contacts = ({ persons, onDelete }) => (
+const ContactList = ({ persons, onDelete }) => (
   <TransitionGroup component="ul">
      
     {persons.map(({ id, name, number }) => (
-      <CSSTransition key={id} timeout={250} classNames="contactItem">
+      <CSSTransition key={id} timeout={250} classNames={s.contactItem}>
         
-       <li  className="contactItem" id={id}>
+       <li  className={s.contactItem} id={id}>
         <p>
           {name} {number}
         </p>
@@ -36,7 +36,7 @@ const Contacts = ({ persons, onDelete }) => (
 
 );
 
-Contacts.propTypes = {
+ContactList.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   number: PropTypes.number,
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
 onDelete: (id) => dispatch(operation.deleteContact(id))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps )(Contacts);
+export default connect(mapStateToProps, mapDispatchToProps )(ContactList);

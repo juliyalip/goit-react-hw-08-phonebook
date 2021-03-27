@@ -6,7 +6,6 @@ axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
  
 
 const token = {
-//2 метода (set, unset)
     set(token) {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`
     },
@@ -15,10 +14,6 @@ const token = {
     }
 }
 
-
-// POST @ /user/signup
-// body {name, email, password}
-// после указанной регистрации добавляем токен в НТТР заголовок
 
 const register = credentails => async dispatch => {
     dispatch(authActions.registerReguest());

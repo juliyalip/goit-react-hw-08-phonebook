@@ -1,12 +1,4 @@
-.menuContainer {
-  margin-left: 7%;
-  margin-right: 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.loginContainer {
+.container {
   margin-left: auto;
   margin-right: auto;
   max-width: 300px;
@@ -19,9 +11,4 @@
   background-color: white;
   border-radius: 10px;
   box-shadow: 10px 14px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.registrLabel {
-  margin: 12px;
-  font-weight: 500;
 }

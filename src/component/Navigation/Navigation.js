@@ -14,7 +14,6 @@ const styles = {
     }
 }
 
-// в зависимости от авторизации показываем или нет тел. контакты
 const Navigation = ({isAuthenticated}) => (
     <div>
         <NavLink to="/"

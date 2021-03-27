@@ -19,7 +19,7 @@ axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 }
 
 
-export const addContact = ({ name, number} ) => dispatch => {
+export const addContact = ({ name, number }) => dispatch => {
     const contact = {
         name,
         number,
@@ -31,7 +31,9 @@ export const addContact = ({ name, number} ) => dispatch => {
         .post('/contacts', contact)
         .then(({ data }) => dispatch(actions.addContactSuccess(data)))
         .catch(error => dispatch(actions.addContactError(error.message)))
-}
+};
+
+
 
 export const deleteContact = contactId => dispatch => {
     dispatch(actions.deleteContactReguest())
