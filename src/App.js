@@ -9,7 +9,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import authOps from './redux/auth/auth-operations';
 import PrivateRoute from './component/PrivatRoute';
 import PublicRoute from './component/PublicRoute'
-
+import Container from './component/Container';
 const HomeView = lazy(() => import('./views/HomeView'))
 const RegisterView = lazy(() => import('./views/RegistrView'))
 const LoginView = lazy(() => import('./views/LoginView'))
