@@ -1,1 +1,1 @@
-export {default} from './Duplicate'
+export { default } from './Duplicate';

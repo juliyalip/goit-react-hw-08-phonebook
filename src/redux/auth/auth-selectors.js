@@ -1,9 +1,9 @@
 const getAuthenticated = state => state.auth.isAuthenticated;
-const getUserName = state => state.auth.user.name
+const getUserName = state => state.auth.user.name;
 
 const authSelectors = {
-    getAuthenticated,
-    getUserName
+	getAuthenticated,
+	getUserName,
 };
 
 export default authSelectors;

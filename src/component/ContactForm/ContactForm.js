@@ -1,130 +1,115 @@
-import { Component } from "react";
+import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Form} from 'react-bootstrap';
-import PropTypes from "prop-types";
-import * as contactOperetions from '../../redux/contact/contact-operations'
+import { Button, Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import * as contactOperetions from '../../redux/contact/contact-operations';
 import selectors from '../../redux/contact/contacts-selectors';
-import s from './contactForm.module.css'
+import s from './contactForm.module.css';
 
-import Duplicate from '../Duplicate'
+import Duplicate from '../Duplicate';
 
+class ContactForm extends Component {
+	state = {
+		name: '',
+		number: '',
+		error: false,
+	};
 
+	static propTypes = {
+		handleChange: PropTypes.func,
+		handleFormSubmit: PropTypes.func,
+		validateForm: PropTypes.func,
+		reset: PropTypes.func,
+	};
 
- class ContactForm extends Component {
-  state = {
-    name: "",
-    number: "",
-    error: false
-    
-  };
+	handleChange = e => {
+		const { name, value } = e.currentTarget;
+		this.setState({
+			[name]: value,
+		});
+	};
 
-  static propTypes = {
-    handleChange: PropTypes.func,
-    handleFormSubmit: PropTypes.func,
-    validateForm: PropTypes.func,
-    reset: PropTypes.func,
-  };
+	handleFormSubmit = e => {
+		e.preventDefault();
+		const { name, number } = this.state;
+		const { onAdd } = this.props;
+		const isValedeForm = this.validateForm();
+		if (!isValedeForm) return;
+		onAdd({ name, number });
+		this.reset();
+	};
 
-  handleChange = (e) => {
-    const { name, value } = e.currentTarget;
-    this.setState({
-      [name]: value,
-    });
-  };
+	validateForm = () => {
+		const { name, number } = this.state;
+		if (!name || !number) {
+			alert('filed is empti');
+			return false;
+		}
+		const contacts = this.props.contacts;
+		if (contacts.some(contact => contact.name === name)) {
+			this.setState({ error: true });
+			setTimeout(() => this.setState({ error: false }), 1000);
+			this.reset();
+			return;
+		}
+		return true;
+	};
 
-  handleFormSubmit = (e) => {
-    e.preventDefault();
-    const { name, number } = this.state;
-    const { onAdd } = this.props;
-   const isValedeForm = this.validateForm();
-   if (!isValedeForm) return;
-    onAdd({ name, number });
-    this.reset();
-  };
+	reset = () => {
+		this.setState({
+			name: '',
+			number: '',
+		});
+	};
 
-  validateForm = () => {
-    const { name, number } = this.state;
-       if (!name || !number) {
-      alert("filed is empti");
-      return false;
-    }
-    const contacts = this.props.contacts;
-    if (contacts.some(contact => contact.name === name)) {
-      this.setState({ error: true })
-      setTimeout(() => this.setState({ error: false }), 1000)
-      this.reset();
-      return
-}
-    return true;
-  };
+	render() {
+		const { name, number } = this.state;
 
-     
-  reset = () => {
-    this.setState({
-      name: "",
-      number: "",
-  
-    });
-   };
-   
+		return (
+			<>
+				{this.state.error && <Duplicate />}
 
+				<form onSubmit={this.handleFormSubmit} className={s.container}>
+					<Form.Group controlId="formBasicEmail">
+						<Form.Label className="registrLabel">
+							Name
+							<Form.Control
+								type="text"
+								name="name"
+								value={name}
+								placeholder="enter name"
+								onChange={this.handleChange}
+							/>
+						</Form.Label>
+					</Form.Group>
 
-
-  render() {
-    const { name, number } = this.state;
- 
-
-    return (
-      <>
-       
-
-        {this.state.error && <Duplicate />}
-
-        <form onSubmit={this.handleFormSubmit} className={s.container}>
-
-  
-        <Form.Group controlId="formBasicEmail">
-        <Form.Label className="registrLabel">
-          Name
-          <Form.Control 
-            type="text"
-            name="name"
-            value={name}
-            placeholder="enter name"
-            onChange={this.handleChange}
-          />
-            </Form.Label>
-            </Form.Group>
-
-        <Form.Group controlId="formBasicEmail">  
-        <Form.Label className="registrLabel">
-          Number
-          <Form.Control
-            type="text"
-            name="number"
-            value={number}
-            placeholder="enter number"
-            onChange={this.handleChange}
-          />
-            </Form.Label>
-            </Form.Group>
-        <Button variant="primary" type="submit">Add contact</Button>
-        </form>
-
-      
-        </>
-    );
-  }
+					<Form.Group controlId="formBasicEmail">
+						<Form.Label className="registrLabel">
+							Number
+							<Form.Control
+								type="text"
+								name="number"
+								value={number}
+								placeholder="enter number"
+								onChange={this.handleChange}
+							/>
+						</Form.Label>
+					</Form.Group>
+					<Button variant="primary" type="submit">
+						Add contact
+					</Button>
+				</form>
+			</>
+		);
+	}
 }
 
 const mapStateToProps = state => ({
-  contacts: selectors.getContacts(state)
-})
-
+	contacts: selectors.getContacts(state),
+});
 
 const mapDispatchToProps = dispatch => ({
-  onAdd: (newContact) => dispatch(contactOperetions.addContact(newContact)),
+	onAdd: newContact => dispatch(contactOperetions.addContact(newContact)),
+});
 
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContactForm)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
