@@ -6,15 +6,10 @@ import { Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
 import authOps from './redux/auth/auth-operations';
-
 import PrivateRoute from './component/PrivatRoute';
 import PublicRoute from './component/PublicRoute'
-
-import AppBar from './component/AppBar';
-import Container from './component/Container'
-
+import Container from './component/Container';
 const HomeView = lazy(() => import('./views/HomeView'))
 const RegisterView = lazy(() => import('./views/RegistrView'))
 const LoginView = lazy(() => import('./views/LoginView'))
@@ -35,8 +30,7 @@ class App extends Component {
  return (
    
       <Container >
-        <AppBar />
-        <Suspense fallback={<Loader type="Circles" color="#00BFFF" height={80} width={80} />}>
+         <Suspense fallback={<Loader type="Circles" color="#00BFFF" height={80} width={80} />}>
         <Switch>
           <PublicRoute exact path="/" component={HomeView} />
         <PublicRoute path="/registr"
